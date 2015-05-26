@@ -1,7 +1,7 @@
 Connectivity\DbManager.class
 Config\RESTConfig.class
+Models\Foto.class
 Models\Party.class
 nl\partyhub\myparties\PhotoService.class
-nl\partyhub\myparties\XmlService.class
 nl\partyhub\myparties\VideoService.class
 Connectivity\Querymanager.class
