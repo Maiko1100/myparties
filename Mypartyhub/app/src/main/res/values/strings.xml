@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mypartyhub</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_postactivity">postactivity</string>
+    <string name="title_activity_fotogalery">fotogalery</string>
+    <string name="title_activity_main_menu">main_menu</string>
+</resources>
