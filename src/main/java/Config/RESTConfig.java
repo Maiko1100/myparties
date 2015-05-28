@@ -5,8 +5,11 @@
  */
 package Config;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import nl.partyhub.myparties.PhotoService;
 
 /**
  *
@@ -14,5 +17,10 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("resources")
 public class RESTConfig extends Application{
+       public Set<Class<?>> getClasses() {
+       Set<Class<?>> s = new HashSet<Class<?>>();
+       s.add(PhotoService.class);
+       return s;
     
+}
 }

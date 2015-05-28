@@ -28,8 +28,8 @@ public class DbManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            String url = "jdbc:mysql://localhost:3306/myparties";
-            String user = "root", pass = "";
+            String url = "jdbc:mysql://72.13.93.199:3307/maiko1100";
+            String user = "maiko1100", pass = "70Maiko72";
                     
 
             /** Open connection */
