@@ -9,6 +9,11 @@ import Models.Foto;
 import Models.Party;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -81,14 +86,15 @@ public class Querymanager {
     public Foto getFoto(int feestId,int fotoId) {
         Foto foto = new Foto();
         try {
-            String sq1 = "SELECT * FROM foto " + "WHERE id='" + fotoId + "' AND feest_has_feestganger_feest_id='"+feestId+"'";
+            String sq1 = "SELECT * FROM foto " + "WHERE id='" + fotoId + "' AND feest_id='"+feestId+"'";
             ResultSet result = dbmanager.doQuery(sq1);
             if (result.next()) {
                 foto = new Foto(result.getInt("id"),
                         result.getString("fotonaam"),
                         result.getBoolean("allowed"),
-                        result.getInt("feest_has_feestganger_feest_id"),
-                        result.getString("feest_has_feestganger_feestganger_gebruikersnaam")
+                        result.getInt("feest_id"),
+                        result.getString("foto"),
+                        result.getString("gebruikersnaam")
                 );
             }
         } catch (SQLException e) {
@@ -97,5 +103,37 @@ public class Querymanager {
 
         return foto;
     }
-
+    public void addFoto(String fotoNaam,boolean allowed,int feestId,String foto,String gebruikersnaam){
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+        
+                String sql1 = "Insert INTO feest_has_feestganger(feest_id,feestganger_gebruikersnaam,datum)"
+                        + "VALUES('"+feestId+ "','"+gebruikersnaam+"','"+dateFormat.format(date)+"');";
+                
+                String sql2 = "INSERT INTO foto (fotonaam,allowed,feest_id,foto,gebruikersnaam)"
+                + "VALUES('" + fotoNaam + "','" + allowed + "' ,'" +feestId + "','"+foto+ "' ,'" + gebruikersnaam + "');";
+                
+                dbmanager.insertQuery(sql1);
+                dbmanager.insertQuery(sql2);
+        
+    }
+     public List<Foto> getFotoList() {
+        List<Foto> fotos = new ArrayList<Foto>();
+        try {
+            String sql = "SELECT * FROM foto";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                fotos.add(new Foto(result.getInt("id"),
+                        result.getString("fotonaam"),
+                        result.getBoolean("allowed"),
+                        result.getInt("feest_id"),
+                        result.getString("foto"),
+                        result.getString("gebruikersnaam")));
+            }
+        } catch (SQLException e) {
+            System.out.println(DbManager.SQL_EXCEPTION + e.getMessage());
+        }
+        return fotos;
+     }
 }
+

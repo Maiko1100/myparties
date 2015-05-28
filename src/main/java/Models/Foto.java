@@ -13,19 +13,32 @@ public class Foto {
     private int id;
     private String fotoNaam;
     private boolean toegestaan;
-    private int feestgangerId;
-    private String feestgangerGebruikersnaam;
+    private int feestId;
+    private String foto;
+    private String gebruikersnaam;
 
     public Foto() {
     }
 
-    public Foto(int id, String fotoNaam, boolean toegestaan, int feestgangerId, String feestgangerGebruikersnaam) {
+    public Foto(int id, String fotoNaam, boolean toegestaan, int feestId, String foto, String gebruikersnaam) {
         this.id = id;
         this.fotoNaam = fotoNaam;
         this.toegestaan = toegestaan;
-        this.feestgangerId = feestgangerId;
-        this.feestgangerGebruikersnaam = feestgangerGebruikersnaam;
+        this.feestId = feestId;
+        this.foto = foto;
+        this.gebruikersnaam = gebruikersnaam;
     }
+
+    public String getGebruikersnaam() {
+        return gebruikersnaam;
+    }
+
+    public void setGebruikersnaam(String gebruikersnaam) {
+        this.gebruikersnaam = gebruikersnaam;
+    }
+    
+
+
 
     public int getId() {
         return id;
@@ -51,20 +64,20 @@ public class Foto {
         this.toegestaan = toegestaan;
     }
 
-    public int getFeestgangerId() {
-        return feestgangerId;
+    public int getFeestId() {
+        return feestId;
     }
 
-    public void setFeestgangerId(int feestgangerId) {
-        this.feestgangerId = feestgangerId;
+    public void setFeestId(int feestId) {
+        this.feestId = feestId;
     }
 
-    public String getFeestgangerGebruikersnaam() {
-        return feestgangerGebruikersnaam;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setFeestgangerGebruikersnaam(String feestgangerGebruikersnaam) {
-        this.feestgangerGebruikersnaam = feestgangerGebruikersnaam;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     
