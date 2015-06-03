@@ -4,14 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <application
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+
+<application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Acitivity.MainActivity"
+            android:name=".Acitivity.main_menu"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,17 +23,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Acitivity.postactivity"
-            android:label="@string/title_activity_postactivity" >
+            android:name=".Acitivity.MainActivity"
+            android:label="@string/title_activity_mainactivity" >
         </activity>
         <activity
             android:name=".Acitivity.Fotogalery"
             android:label="@string/title_activity_fotogalery" >
         </activity>
         <activity
-            android:name=".Acitivity.main_menu"
-            android:label="@string/title_activity_main_menu" >
+            android:name=".Acitivity.postactivity"
+            android:label="@string/title_activity_postactivity" >
         </activity>
-    </application>
+</application>
 
 </manifest>

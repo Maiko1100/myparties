@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/tvIsConnected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#FF0000"
-        android:textColor="#FFF"
-        android:textSize="18dp"
-        android:layout_marginBottom="5dp"
-        android:text="is connected?" />
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".postactivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -21,48 +15,75 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="50dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:layout_alignBaseline="@+id/etName"/>
+            android:layout_alignBaseline="@+id/etName"
+            android:layout_marginLeft="8dp"
+            android:text="Photo Name" />
+
         <EditText
             android:id="@+id/etName"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tvName"/>
+            android:layout_toRightOf="@+id/tvName" />
+
         <TextView
             android:id="@+id/tvCountry"
-            android:layout_width="50dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/etFeestId"
             android:layout_below="@+id/tvName"
-            android:text="feestId"
-            android:layout_alignBaseline="@+id/etFeestId"/>
+            android:layout_marginLeft="8dp"
+            android:text="Party ID" />
+
         <EditText
             android:id="@+id/etFeestId"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tvCountry"
-            android:layout_below="@+id/etName"/>
+            android:layout_below="@+id/etName"
+            android:layout_toRightOf="@+id/tvCountry" />
+
         <TextView
             android:id="@+id/tvTwitter"
-            android:layout_width="50dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/etGebruikersnaam"
             android:layout_below="@+id/tvCountry"
-            android:text="gebruikersnaam"
-            android:layout_alignBaseline="@+id/etGebruikersnaam"/>
+            android:layout_marginLeft="8dp"
+            android:text="User Name" />
+
         <EditText
             android:id="@+id/etGebruikersnaam"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tvTwitter"
-            android:layout_below="@+id/etFeestId"/>
+            android:layout_below="@+id/etFeestId"
+            android:layout_toRightOf="@+id/tvTwitter" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etGebruikersnaam"
+            android:text="Take Photo!" />
+
+        <ImageView
+            android:id="@+id/imageview1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/button1"
+            android:drawingCacheQuality="high"
+            android:scaleType="centerCrop" />
+
+        <Button
+            android:id="@+id/btnPost"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etGebruikersnaam"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@+id/button1"
+            android:text="POST" />
+
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnPost"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="POST"/>
 
-</LinearLayout>
+</RelativeLayout>

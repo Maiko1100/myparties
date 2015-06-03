@@ -11,17 +11,17 @@ import android.widget.Button;
 import com.team12.wfc.mypartyhub.R;
 
 public class main_menu extends ActionBarActivity implements View.OnClickListener{
-    Button btnPostScreen,btnGetScreen,btnFotoGalery;
+    private static Button btnPostScreen;
+    private static Button btnGetScreen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         btnPostScreen = (Button) findViewById(R.id.btnPostScreen);
         btnGetScreen = (Button) findViewById(R.id.btnGetScreen);
-        btnFotoGalery = (Button) findViewById(R.id.btnFotoGalery);
         btnPostScreen.setOnClickListener(this);
         btnGetScreen.setOnClickListener(this);
-        btnFotoGalery.setOnClickListener(this);
     }
 
     @Override
@@ -33,15 +33,17 @@ public class main_menu extends ActionBarActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
+
+        switch (id) {
             case R.id.btnPostScreen:
-                new Intent(this, postactivity.class);
+                Intent intentPost = new Intent(this, postactivity.class);
+                startActivity(intentPost);
                 break;
+
             case R.id.btnGetScreen:
-                new Intent(this, MainActivity.class);
-                break;
-            case R.id.btnFotoGalery:
-                new Intent(this, Fotogalery.class);
+                Intent intentGet = new Intent(this, MainActivity.class);
+                startActivity(intentGet);
                 break;
         }
     }

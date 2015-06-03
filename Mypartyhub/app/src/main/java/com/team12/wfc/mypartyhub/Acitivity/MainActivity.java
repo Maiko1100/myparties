@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
 
     public void execute(String fotoId,String feestId){
-        new HttpAsyncTask().execute("http://10.0.3.2:8080/myparties/resources/photos/"+feestId+"/" + fotoId);
+        new HttpAsyncTask().execute("http://10.0.0.169:8080/myparties/resources/photos/"+feestId+"/" + fotoId);
 
     }
 
