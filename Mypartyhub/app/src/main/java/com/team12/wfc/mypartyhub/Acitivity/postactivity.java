@@ -45,9 +45,18 @@ public class postactivity extends Activity implements OnClickListener {
     Button btnPost;
     Bitmap bmp;
 
+    double gpsSchoolLat = 52.337416;
+    double gpsSchoolLon = 4.928744;
+
+    double gpsThuisLat = 52.430938;
+    double gpsThuisLon = 4.902275;
+
+    GPSTracker gps;
+
     //Camera stuff
     Button btnTakePhoto;
     ImageView imgTakenPhoto;
+    String PartyID="1";
     private static final int CAM_REQUEST = 1313;
 
     Foto foto;
@@ -70,30 +79,23 @@ public class postactivity extends Activity implements OnClickListener {
         // add click listener to Button "POST"
         btnPost.setOnClickListener(this);
 
+        gps = new GPSTracker(getApplicationContext());
+
     }
 
 
     protected void btnTakePhotoClicker(View v) {
 
-//            // TODO Auto-generated method stub
-//            Intent cameraintent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//            startActivityForResult(cameraintent, CAM_REQUEST);
+        System.out.println("GPS: " + gps.getDistance(gpsThuisLat, gpsThuisLon));
 
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivityForResult(intent, CAM_REQUEST);
+        if(gps.getDistance(gpsSchoolLat, gpsSchoolLon) < 1000){
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            startActivityForResult(intent, CAM_REQUEST);
+        }
+        else{
+            Toast.makeText(getBaseContext(), "You are not at the party", Toast.LENGTH_LONG).show();
+        }
 
-//        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-//
-//        File pictureDir = cw.getDir("TEST", Context.MODE_PRIVATE);
-//        String pictureName = getPictureName();
-//        File imageFile = new File(pictureDir, pictureName);
-//        Uri pictureUri = Uri.fromFile(imageFile);
-//
-//
-//        intent = intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-//
-//        System.out.println("URI: " + pictureUri);
-//        startActivityForResult(intent, CAM_REQUEST);
     }
 
     private String getPictureName() {
@@ -200,7 +202,8 @@ public class postactivity extends Activity implements OnClickListener {
                 if (!validate())
                     Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
                 // call AsynTask to perform network operation on separate thread
-                new HttpAsyncTask().execute("http://10.0.0.169:8080/myparties/resources/photos/receivepicture");
+                new HttpAsyncTask().execute("http://145.109.147.234:8080/myparties/resources/photos/receivepicture");
+//                new HttpAsyncTask().execute("http://145.109.147.234:8080/myparties/resources/parties/"+PartyID);
                 break;
             case R.id.button1:
                 btnTakePhotoClicker(view);
@@ -212,14 +215,10 @@ public class postactivity extends Activity implements OnClickListener {
     public String test(Context context) {
         imgTakenPhoto.buildDrawingCache();
         Bitmap bMap = imgTakenPhoto.getDrawingCache();
-
-        System.out.println( "TESTERRRR");
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bMap.compress(Bitmap.CompressFormat.JPEG, 1, baos); //bm is the bitmap object
+        bMap.compress(Bitmap.CompressFormat.JPEG, 50, baos); //bm is the bitmap object
         byte[] byteArrayImage = baos.toByteArray();
         String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-        System.out.println("ENCODEDIMAGE: "+ encodedImage);
 
 
         return encodedImage;
@@ -241,6 +240,7 @@ public class postactivity extends Activity implements OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), "Data Sent!", Toast.LENGTH_LONG).show();
+            System.out.println(result);
         }
     }
 
